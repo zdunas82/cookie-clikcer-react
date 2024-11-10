@@ -19,7 +19,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  max-width: 600px; /* Corrected from 600% to 600px */
+  max-width: 600px;
   width: 500px;
   height: 90vh;
   padding: 15px;
@@ -83,18 +83,17 @@ p {
   transform: scale(1.2);
 }
 
-/* Alert styling to make sure it appears on top of the game container */
 .alert {
-  position: fixed; /* Fixed to always stay in view */
+  position: fixed; 
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: #ff4444; /* Red background for error alert */
+  background-color: #ff4444; 
   color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 9999; /* Very high z-index to ensure it appears on top */
+  z-index: 9999; 
   text-align: center;
 }
 
