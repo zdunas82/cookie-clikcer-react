@@ -1,8 +1,11 @@
 function CookieButton({ onClick }) {
   return (
-    <button onClick={onClick}>
-      Click me to get Cookie!
-    </button>
+    <img
+      src="/images/cookie.png"
+      alt="Cookie"
+      id="cookie-image"
+      onClick={onClick}
+    />
   );
 }
 

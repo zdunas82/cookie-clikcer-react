@@ -3,14 +3,21 @@ import CookieButton from "./components/CookieButton";
 import Stats from "./components/Stats";
 import UpgradeList from "./components/UpgradeList";
 import Alert from "./components/Alert";
-// import "./App.css";
+import "./App.css";
 
 export default function App() {
-  const [cookies, setCookies] = useState(parseInt(localStorage.getItem("cookies")) || 0);
+  const [cookies, setCookies] = useState(
+    parseInt(localStorage.getItem("cookies")) || 0
+  );
   const [cps, setCps] = useState(parseInt(localStorage.getItem("cps")) || 0);
-  const [alert, setAlert] = useState({ message: "", isSuccess: true, isVisible: false });
+  const [alert, setAlert] = useState({
+    message: "",
+    isSuccess: true,
+    isVisible: false,
+  });
 
-  // Effect to handle cookies increment by CPS
+  const clickSound = new Audio("/sounds/crunch.mp3");
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCookies((prevCookies) => {
@@ -19,27 +26,21 @@ export default function App() {
         return updatedCookies;
       });
     }, 1000);
-
     return () => clearInterval(interval);
   }, [cps]);
 
-  // Function to handle cookie click
   const incrementCookies = () => {
     setCookies((prevCookies) => {
       const updatedCookies = prevCookies + 1;
       localStorage.setItem("cookies", updatedCookies);
       return updatedCookies;
     });
+    clickSound.play();
   };
 
-  // Function to handle purchase upgrade
   const purchaseUpgrade = (upgrade) => {
     if (cookies >= upgrade.cost) {
-      setCookies((prevCookies) => {
-        const updatedCookies = prevCookies - upgrade.cost;
-        localStorage.setItem("cookies", updatedCookies);
-        return updatedCookies;
-      });
+      setCookies((prevCookies) => prevCookies - upgrade.cost);
       setCps((prevCps) => {
         const updatedCps = prevCps + upgrade.increase;
         localStorage.setItem("cps", updatedCps);
@@ -51,18 +52,16 @@ export default function App() {
     }
   };
 
-  // Function to show alerts
   const showAlert = (message, isSuccess) => {
     setAlert({ message, isSuccess, isVisible: true });
   };
 
-  // Function to close alert
   const closeAlert = () => {
     setAlert((prevAlert) => ({ ...prevAlert, isVisible: false }));
   };
 
   return (
-    <div>
+    <div className="game-container">
       <h1>Cookie Clicker</h1>
       <CookieButton onClick={incrementCookies} />
       <Stats cookies={cookies} cps={cps} />
