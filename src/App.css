@@ -19,7 +19,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  max-width: 600%;
+  max-width: 600px; /* Corrected from 600% to 600px */
   width: 500px;
   height: 90vh;
   padding: 15px;
@@ -55,7 +55,7 @@ body {
   transform: scale(1);
 }
 
-#upgrdes-container button:hover {
+#upgrades-container button:hover {
   background-color: #555;
   transform: scale(1.05);
 }
@@ -81,6 +81,37 @@ p {
 
 #cookie-image:active {
   transform: scale(1.2);
+}
+
+/* Alert styling to make sure it appears on top of the game container */
+.alert {
+  position: fixed; /* Fixed to always stay in view */
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #ff4444; /* Red background for error alert */
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 9999; /* Very high z-index to ensure it appears on top */
+  text-align: center;
+}
+
+.alert button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.alert button:hover {
+  background-color: #555;
 }
 
 /* Media Queries for smaller devices */
@@ -110,6 +141,16 @@ p {
     font-size: 12px; 
     padding: 8px;
   }
+
+  .alert {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .alert button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -135,5 +176,15 @@ p {
   #upgrades-container button {
     font-size: 10px;
     padding: 6px;
+  }
+
+  .alert {
+    width: 90%;
+    font-size: 12px;
+  }
+
+  .alert button {
+    font-size: 10px;
+    padding: 6px 12px;
   }
 }
